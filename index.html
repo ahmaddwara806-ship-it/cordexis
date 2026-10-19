@@ -1,0 +1,826 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title id="pageTitle">Cordexis | الأنسجة والحبال الصناعية والاستيراد والتصدير</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        :root { --bg-dark: #070d14; --card-bg: #0d1722; --card-border: #1a2938; --gold-primary: #f59e0b; --gold-bright: #fbbf24; --text-white: #ffffff; --text-gray: #94a3b8; --success-green: #10b981; --danger-red: #ef4444; }
+        body.light-mode { --bg-dark: #f1f5f9; --card-bg: #ffffff; --card-border: #cbd5e1; --text-white: #0f172a; --text-gray: #475569; }
+        body { font-family: 'Cairo', sans-serif; background-color: var(--bg-dark); color: var(--text-white); margin: 0; padding-bottom: 90px; direction: rtl; transition: background-color 0.3s, color 0.3s; }
+        html[dir="ltr"] body { direction: ltr; }
+        .announcement-bar { background: linear-gradient(90deg, var(--gold-primary), var(--gold-bright)); color: #000; text-align: center; padding: 8px; font-weight: 800; font-size: 0.85rem; box-shadow: 0 2px 10px rgba(245,158,11,0.2); }
+        header { background: #0b1521; border-bottom: 1px solid var(--card-border); padding: 15px; display: flex; align-items: center; justify-content: space-between; max-width: 650px; margin: 0 auto; position: sticky; top: 0; z-index: 100; backdrop-filter: blur(10px); }
+        body.light-mode header { background: rgba(255,255,255,0.9); }
+        .brand-title { color: var(--gold-primary); font-size: 1.3rem; font-weight: 900; margin: 0; }
+        .brand-sub { color: var(--text-gray); font-size: 0.75rem; }
+        .header-actions { display: flex; align-items: center; gap: 8px; }
+        .theme-toggle-btn, .lang-toggle-btn { background: var(--card-bg); border: 1px solid var(--card-border); color: var(--gold-primary); padding: 8px 12px; border-radius: 20px; cursor: pointer; display: flex; align-items: center; justify-content: center; position: relative; font-weight: 800; font-size: 0.8rem; font-family: inherit; }
+        
+        .nav-tabs { display: flex; background: var(--card-bg); border-bottom: 1px solid var(--card-border); max-width: 650px; margin: 0 auto 15px; overflow-x: auto; }
+        .nav-btn { flex: 1; padding: 12px 8px; background: transparent; border: none; color: var(--text-gray); font-weight: 800; font-size: 0.8rem; cursor: pointer; font-family: inherit; border-bottom: 2px solid transparent; white-space: nowrap; text-align: center; }
+        .nav-btn.active { color: var(--gold-bright); border-bottom-color: var(--gold-primary); background: rgba(245, 158, 11, 0.05); }
+        
+        .container { max-width: 650px; margin: 0 auto; padding: 0 15px; }
+        .page-view { display: none; }
+        .page-view.active { display: block; }
+        
+        .showroom-banner { background: linear-gradient(rgba(7,13,20,0.7), rgba(7,13,20,0.85)), url('https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=800') center/cover; border: 1px solid var(--card-border); border-radius: 16px; padding: 25px 15px; text-align: center; margin-bottom: 15px; box-shadow: 0 6px 20px rgba(0,0,0,0.3); }
+        .showroom-banner h2 { color: var(--gold-bright); margin: 0 0 8px 0; font-size: 1.4rem; font-weight: 900; }
+        .showroom-banner p { color: var(--text-gray); font-size: 0.85rem; margin: 0; }
+
+        .search-box { position: relative; margin-bottom: 12px; }
+        .search-box input { width: 100%; padding: 12px 40px 12px 15px; background: var(--card-bg); border: 1px solid var(--card-border); border-radius: 12px; color: var(--text-white); font-family: inherit; box-sizing: border-box; font-size: 0.9rem; }
+        .search-box i { position: absolute; right: 15px; top: 50%; transform: translateY(-50%); color: var(--gold-primary); }
+        html[dir="ltr"] .search-box i { right: auto; left: 15px; }
+        html[dir="ltr"] .search-box input { padding: 12px 15px 12px 40px; }
+        
+        .filter-section { background: var(--card-bg); border: 1px solid var(--card-border); border-radius: 12px; padding: 12px; margin-bottom: 15px; }
+        .category-buttons { display: flex; gap: 8px; overflow-x: auto; padding-bottom: 5px; }
+        .btn-cat { background: var(--bg-dark); border: 1px solid var(--card-border); color: var(--text-gray); padding: 6px 14px; border-radius: 20px; font-size: 0.82rem; font-weight: 700; cursor: pointer; white-space: nowrap; }
+        .btn-cat.active { background: var(--gold-primary); color: #000; border-color: var(--gold-bright); }
+        
+        .catalog { display: flex; flex-direction: column; gap: 15px; }
+        .card, .trade-card { background: var(--card-bg); border: 1px solid var(--card-border); border-radius: 16px; overflow: hidden; padding: 15px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); }
+        .card-img { width: 100%; height: 210px; object-fit: cover; background: #000; border-radius: 10px; }
+        .title, .trade-title { font-size: 1.15rem; font-weight: 800; color: var(--gold-bright); margin: 10px 0 6px 0; }
+        .specs { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 10px; }
+        .spec-item { background: var(--bg-dark); padding: 4px 10px; border-radius: 6px; border: 1px solid var(--card-border); font-size: 0.78rem; color: var(--text-gray); }
+        .product-desc { background: var(--bg-dark); padding: 10px; border-radius: 8px; border: 1px solid var(--card-border); font-size: 0.83rem; color: var(--text-gray); margin-bottom: 10px; line-height: 1.5; }
+        
+        .action-buttons { display: flex; gap: 8px; }
+        .btn-whatsapp-direct { flex: 1; background: #25d366; color: #000; border: none; padding: 12px; border-radius: 8px; font-weight: 800; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 8px; font-family: inherit; font-size: 0.88rem; text-decoration: none; }
+        .btn-share { background: var(--bg-dark); border: 1px solid var(--card-border); color: var(--gold-bright); padding: 10px 14px; border-radius: 8px; cursor: pointer; }
+        
+        .shipping-country-card { background: var(--card-bg); border: 1px solid var(--card-border); border-radius: 14px; padding: 15px; margin-bottom: 15px; }
+        .shipping-country-title { color: var(--gold-bright); font-size: 1.1rem; font-weight: 800; display: flex; align-items: center; gap: 8px; margin-bottom: 8px; }
+        
+        .drawer-trigger { position: fixed; top: 35%; right: 0; background: var(--gold-primary); color: #000; padding: 10px 8px; border-radius: 10px 0 0 10px; cursor: pointer; z-index: 999; font-weight: 800; font-size: 0.8rem; box-shadow: -2px 2px 10px rgba(0,0,0,0.3); }
+        html[dir="ltr"] .drawer-trigger { right: auto; left: 0; border-radius: 0 10px 10px 0; }
+        .drawer-overlay { position: fixed; top:0; left:0; right:0; bottom:0; background: rgba(0,0,0,0.7); display: none; z-index: 1500; }
+        .drawer-content { position: fixed; top: 0; right: -320px; width: 300px; height: 100%; background: var(--card-bg); border-left: 2px solid var(--gold-primary); z-index: 1600; transition: right 0.3s ease; padding: 15px; box-sizing: border-box; overflow-y: auto; }
+        html[dir="ltr"] .drawer-content { right: auto; left: -320px; border-left: none; border-right: 2px solid var(--gold-primary); transition: left 0.3s ease; }
+        .drawer-content.open { right: 0; }
+        html[dir="ltr"] .drawer-content.open { left: 0; right: auto; }
+        
+        .admin-dashboard { background: var(--card-bg); border: 2px solid var(--gold-primary); border-radius: 16px; padding: 18px; margin-bottom: 20px; }
+        .admin-section { background: var(--bg-dark); border: 1px solid var(--card-border); border-radius: 10px; padding: 12px; margin-bottom: 15px; }
+        .form-group { margin-bottom: 10px; }
+        .form-group label { display: block; font-size: 0.78rem; color: var(--text-gray); margin-bottom: 3px; font-weight: 700; }
+        .form-group input, .form-group textarea, .form-group select { width: 100%; padding: 8px; background: var(--card-bg); border: 1px solid var(--card-border); border-radius: 6px; color: var(--text-white); box-sizing: border-box; font-family: inherit; font-size: 0.85rem; }
+        .btn-gold { width: 100%; background: var(--gold-primary); color: #000; border: none; padding: 10px; border-radius: 8px; font-weight: 800; cursor: pointer; font-family: inherit; font-size: 0.9rem; }
+        .btn-danger { background: var(--danger-red); color: #fff; }
+        
+        .modal-overlay { position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.8); z-index: 3000; display: none; align-items: center; justify-content: center; padding: 15px; }
+        .modal-box { background: var(--card-bg); border: 2px solid var(--gold-primary); border-radius: 16px; width: 100%; max-width: 500px; max-height: 90vh; overflow-y: auto; padding: 20px; box-sizing: border-box; }
+        .cat-item-row { display: flex; align-items: center; justify-content: space-between; background: var(--card-bg); padding: 6px 10px; border-radius: 6px; margin-bottom: 6px; border: 1px solid var(--card-border); }
+        
+        .admin-card-actions { display: none; gap: 8px; margin-top: 10px; padding-top: 10px; border-top: 1px dashed var(--gold-primary); }
+        body.admin-mode .admin-card-actions { display: flex; }
+        
+        .map-box { width: 100%; height: 180px; border-radius: 10px; border: 1px solid var(--card-border); margin-top: 8px; background: #000; }
+    </style>
+</head>
+<body>
+    <div class="announcement-bar"><i class="fa-solid fa-bullhorn"></i> <span id="announcementText">أهلاً بكم في Cordexis - توريد وتصدير الحبال والأنسجة والسفايف والخيوط للجملة!</span></div>
+    
+    <header>
+        <div>
+            <h1 class="brand-title" id="headerBrandTitle">Cordexis</h1>
+            <div class="brand-sub" id="headerBrandSub">بإدارة أبناء الحاج محمود دوارة</div>
+        </div>
+        <div class="header-actions">
+            <button class="lang-toggle-btn" onclick="toggleLanguage()"><i class="fa-solid fa-globe"></i> <span id="langBtnText">EN</span></button>
+            <button class="theme-toggle-btn" style="width: 40px; height: 40px; border-radius: 50%;" onclick="toggleTheme()"><i class="fa-solid fa-moon" id="themeIcon"></i></button>
+        </div>
+    </header>
+
+    <div class="nav-tabs" id="mainNavTabs"></div>
+
+    <div class="drawer-trigger" id="adminDrawerBtn" onclick="openDrawer()"><i class="fa-solid fa-user-gear"></i> الإدارة</div>
+    <div class="drawer-overlay" id="drawerOverlay" onclick="closeDrawer()"></div>
+    <div class="drawer-content" id="drawerContent">
+        <h3 style="color: var(--gold-primary); margin-top:0;" id="adminLoginTitle">تسجيل دخول الإدارة</h3>
+        <div id="authSection">
+            <div id="step1"><div class="form-group"><label id="lblAdminEmail">الإيميل:</label><input type="email" id="admin-email"></div><button class="btn-gold" id="btnSendCode" onclick="processStep1()">إرسال الكود</button></div>
+            <div id="step2" style="display:none;"><div class="form-group"><label id="lblVerifyCode">كود التحقق:</label><input type="text" id="admin-code"></div><button class="btn-gold" id="btnConfirmCode" onclick="processStep2()">تأكيد الكود</button></div>
+            <div id="step3" style="display:none;"><div class="form-group"><label id="lblAdminPass">كلمة السر:</label><input type="password" id="admin-pass"></div><button class="btn-gold" id="btnLoginDash" onclick="processStep3()">دخول اللوحة</button></div>
+        </div>
+        <div id="adminQuickNav" style="display:none;">
+            <p style="color:var(--success-green); font-size:0.82rem; font-weight:bold;" id="adminActiveMsg"><i class="fa-solid fa-circle-check"></i> تم تفعيل وضع الأدمن</p>
+            <button class="btn-gold" id="btnFullDashboard" onclick="switchPage('adminPage', null); closeDrawer();">لوحة التحكم الكاملة</button><br><br>
+            <button class="btn-gold btn-danger" id="btnLogoutAdmin" onclick="logoutAdmin()">تسجيل الخروج</button>
+        </div>
+    </div>
+
+    <div class="container">
+        <div id="pagesContainer"></div>
+
+        <div id="adminPage" class="page-view">
+            <div class="admin-dashboard">
+                <h3 style="color:var(--gold-bright); margin-top:0;"><i class="fa-solid fa-screwdriver-wrench"></i> لوحة التحكم والتحرير الشاملة</h3>
+                
+                <!-- 1. أرقام ومسميات الواتساب والأزرار -->
+                <div class="admin-section">
+                    <h4 style="color:var(--gold-bright);"><i class="fa-solid fa-address-book"></i> 1. إدارة أرقام واتساب ومسميات الأزرار والمسؤولين</h4>
+                    <div class="form-group">
+                        <label>رقم واتساب قسم المبيعات:</label>
+                        <input type="text" id="editSalesPhone" value="963995869501">
+                    </div>
+                    <div class="form-group">
+                        <label>اسم وصفة مسؤول المبيعات:</label>
+                        <input type="text" id="editSalesManager" value="مدير قسم المبيعات: عبد الله دوارة">
+                    </div>
+                    <div class="form-group">
+                        <label>نص زر الواتساب للمنتجات (الكتالوج):</label>
+                        <input type="text" id="editSalesBtnText" value="طلب وتواصل مباشر عبر الواتساب">
+                    </div>
+                    <hr style="border:1px dashed var(--card-border); margin:10px 0;">
+                    <div class="form-group">
+                        <label>رقم واتساب قسم الاستيراد والتصدير:</label>
+                        <input type="text" id="editExportPhone" value="963952172658">
+                    </div>
+                    <div class="form-group">
+                        <label>اسم وصفة مسؤول التصدير:</label>
+                        <input type="text" id="editExportManager" value="مدير قسم الاستيراد والتصدير: محمد دوارة">
+                    </div>
+                    <div class="form-group">
+                        <label>نص زر الواتساب لقسم الاستيراد والتصدير:</label>
+                        <input type="text" id="editExportBtnText" value="طلب عينات واستفسار تصدير">
+                    </div>
+                    <button class="btn-gold" onclick="updateContactSettings()">حفظ التعديلات والأرقام والمسميات</button>
+                </div>
+
+                <!-- 2. إضافة منتج جديد -->
+                <div class="admin-section">
+                    <h4 style="color:var(--gold-bright);"><i class="fa-solid fa-circle-plus"></i> 2. إضافة صنف أو منتج جديد للنظام</h4>
+                    <div class="form-group"><label>القسم الرئيسي:</label><select id="p-target" onchange="updateProductCatDropdown(this.value)"></select></div>
+                    <div class="form-group"><label>اسم الصنف:</label><input type="text" id="p-title" placeholder="مثال: حبل نايلون ثقيل"></div>
+                    <div class="form-group" id="catSelectBoxWrapper"><label>التصنيف الفرعي:</label><select id="p-cat"></select></div>
+                    <div class="form-group"><label>المقاس / العرض:</label><input type="text" id="p-size" placeholder="مثال: 10mm"></div>
+                    <div class="form-group"><label>اللون / الخامة:</label><input type="text" id="p-color" placeholder="مثال: أبيض / أصفر"></div>
+                    <div class="form-group">
+                        <label>صورة المنتج:</label>
+                        <input type="file" accept="image/*" onchange="previewImageFile(this, 'p-media-preview')">
+                        <input type="hidden" id="p-media-base64">
+                        <img id="p-media-preview" src="" style="display:none; width:100%; height:120px; object-fit:cover; margin-top:5px; border-radius:6px;">
+                    </div>
+                    <div class="form-group"><label>الشرح والتفاصيل:</label><textarea id="p-desc" rows="2" placeholder="تفاصيل ومواصفات الصنف..."></textarea></div>
+                    <button class="btn-gold" onclick="addNewProduct()">نشر الصنف وإضافته بالموقع فوراً</button>
+                </div>
+
+                <!-- 3. إعدادات الشركة واسمها -->
+                <div class="admin-section">
+                    <h4 style="color:var(--gold-bright);"><i class="fa-solid fa-signature"></i> 3. تغيير اسم الشركة والمنشأة والشريط الإعلاني</h4>
+                    <div class="form-group"><label>اسم الشركة الرئيسي:</label><input type="text" id="editCompanyName" value="Cordexis"></div>
+                    <div class="form-group"><label>الوصف التحتي:</label><input type="text" id="editCompanySub" value="بإدارة أبناء الحاج محمود دوارة"></div>
+                    <button class="btn-gold" onclick="updateCompanyIdentity()">تحديث اسم الشركة</button>
+                </div>
+
+                <!-- 4. مواقع المعمل والمستودعات (مغلقة وآمنة للأدمن فقط) -->
+                <div class="admin-section">
+                    <h4 style="color:var(--gold-bright);"><i class="fa-solid fa-map-location-dot"></i> 4. إدارة خرائط المعمل والمستودعات (للأدمن فقط 🔒)</h4>
+                    <div class="form-group">
+                        <label>رابط خريطة المعمل الرئيسي (Google Maps Embed URL):</label>
+                        <input type="text" id="editFactoryMap" placeholder="الصق رابط خريطة المعمل هنا">
+                    </div>
+                    <div class="form-group">
+                        <label>رابط خريطة المستودعات (Google Maps Embed URL):</label>
+                        <input type="text" id="editWarehouseMap" placeholder="الصق رابط خريطة المستودعات هنا">
+                    </div>
+                    <button class="btn-gold" onclick="updateFactoryMaps()">حفظ وتحديث الخرائط الآمنة</button>
+                </div>
+
+                <!-- 5. إدارة الأقسام والتبويبات والتصنيفات الفرعية -->
+                <div class="admin-section">
+                    <h4 style="color:var(--gold-bright);"><i class="fa-solid fa-compass"></i> 5. إدارة الأقسام الرئيسية والفرعية</h4>
+                    <div class="form-group"><input type="text" id="new-main-tab-name" placeholder="اسم القسم الرئيسي الجديد"></div>
+                    <div class="form-group">
+                        <label>نوع المحتوى بالقسم:</label>
+                        <select id="new-main-tab-type">
+                            <option value="catalog">كتالوج المنتجات والجملة</option>
+                            <option value="trade">قسم الاستيراد والتصدير</option>
+                            <option value="shipping">دليل خيارات وطرق الشحن والتسليم</option>
+                            <option value="custom">قسم مخصص ومعمل الشركة (مع خريطة)</option>
+                        </select>
+                    </div>
+                    <button class="btn-gold" onclick="addMainTab()" style="margin-bottom:10px;">إضافة قسم رئيسي جديد</button>
+                    <div id="adminMainTabsList"></div>
+                </div>
+
+                <div class="admin-section">
+                    <h4 style="color:var(--gold-bright);"><i class="fa-solid fa-layer-group"></i> إدارة التصنيفات الفرعية</h4>
+                    <div class="form-group"><input type="text" id="new-cat-name" placeholder="اسم التصنيف الفرعي الجديد"></div>
+                    <button class="btn-gold" onclick="addCategory()" style="margin-bottom:10px;">إضافة تصنيف فرعي</button>
+                    <div id="adminCatManageList"></div>
+                </div>
+
+                <button class="btn-gold btn-danger" onclick="logoutAdmin()">تسجيل الخروج من لوحة التحكم</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal-overlay" id="editModal">
+        <div class="modal-box">
+            <h3 style="color:var(--gold-bright); margin-top:0;">تعديل تفاصيل الصنف</h3>
+            <input type="hidden" id="m-prod-id">
+            <div class="form-group"><label>اسم الصنف:</label><input type="text" id="m-title"></div>
+            <div class="form-group"><label>المقاس:</label><input type="text" id="m-size"></div>
+            <div class="form-group"><label>اللون:</label><input type="text" id="m-color"></div>
+            <div class="form-group">
+                <label>تغيير الصورة:</label>
+                <input type="file" accept="image/*" onchange="previewImageFile(this, 'm-media-preview')">
+                <input type="hidden" id="m-media-base64">
+                <img id="m-media-preview" src="" style="width:100%; height:120px; object-fit:cover; margin-top:5px; border-radius:6px;">
+            </div>
+            <div class="form-group"><label>الشرح:</label><textarea id="m-desc" rows="2"></textarea></div>
+            <button class="btn-gold" onclick="saveProductEdits()">حفظ التعديلات</button>
+            <button class="btn-gold btn-danger" style="margin-top:8px;" onclick="closeEditModal()">إلغاء</button>
+        </div>
+    </div>
+
+    <script>
+        const AUTHORIZED_EMAIL = "ahmaddwara806@gmail.com", ADMIN_PASSWORD = "AhmadD999";
+        
+        let SALES_WHATSAPP_PHONE = localStorage.getItem('sales_phone') || "963995869501"; 
+        let SALES_MANAGER_NAME = localStorage.getItem('sales_manager') || "مدير قسم المبيعات: عبد الله دوارة";
+        let SALES_BTN_TEXT = localStorage.getItem('sales_btn_text') || "طلب وتواصل مباشر عبر الواتساب";
+
+        let EXPORT_WHATSAPP_PHONE = localStorage.getItem('export_phone') || "963952172658"; 
+        let EXPORT_MANAGER_NAME = localStorage.getItem('export_manager') || "مدير قسم الاستيراد والتصدير: محمد دوارة";
+        let EXPORT_BTN_TEXT = localStorage.getItem('export_btn_text') || "طلب عينات واستفسار تصدير";
+
+        let generatedCode = null, selectedCat = 'all', currentLang = 'ar';
+
+        let factoryMapUrl = localStorage.getItem('factory_map') || "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d51590.2312!2d37.1343!3d36.2021!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMzDCsDEyJzA3LjgiTiAzN8KwMDgnMDMuNSJF!5e0!3m2!1sar!2s!4v1650000000000";
+        let warehouseMapUrl = localStorage.getItem('warehouse_map') || "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d26450.12!2d33.5138!3d36.2765!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMzPCsDMwJzQ5LjciTiAzNsKwMTYnMzUuNCJF!5e0!3m2!1sar!2s!4v1650000000000";
+
+        let mainTabs = JSON.parse(localStorage.getItem('saved_mainTabs')) || [
+            { id: 'catalogPage', name: 'كتالوج المنتجات والجملة', nameEn: 'Products Catalog', type: 'catalog', icon: 'fa-boxes-stacked' },
+            { id: 'tradePage', name: 'الاستيراد والتصدير', nameEn: 'Import & Export', type: 'trade', icon: 'fa-plane-ship' },
+            { id: 'shippingPage', name: 'طريقة وخيارات الاستلام والشحن', nameEn: 'Delivery & Shipping', type: 'shipping', icon: 'fa-truck-fast' },
+            { id: 'mapPage', name: 'مواقع المعمل والمستودعات', nameEn: 'Factory & Warehouses', type: 'custom', icon: 'fa-map-location-dot' }
+        ];
+
+        let categories = JSON.parse(localStorage.getItem('saved_categories')) || [
+            { id: 'all', name: 'الكل', nameEn: 'All' }, 
+            { id: 'nylon', name: 'حبال نايلون', nameEn: 'Nylon Ropes' }, 
+            { id: 'flat', name: 'سفايف وأحزمة مسطحة', nameEn: 'Lashing Straps & Webbing' },
+            { id: 'threads', name: 'خيوط وألياف صناعية', nameEn: 'Industrial Yarns & Threads' }
+        ];
+
+        let products = JSON.parse(localStorage.getItem('saved_products')) || [
+            { id: 1, target: 'catalogPage', title: 'حبل نايلون مجدول صناعي عالي المتانة', titleEn: 'Braided Industrial Nylon Rope', cat: 'nylon', size: '8mm - 24mm', color: 'أصفر / أبيض / حسب الطلب', colorEn: 'Yellow / White', media: 'https://images.unsplash.com/photo-1605218403815-681966a3d6a0?w=600', desc: 'حبال نايلون وبولي بروبيلين متينة ومقاومة للرطوبة والأحمال الشاقة، للورش، المقاولات والشحن.' },
+            { id: 2, target: 'catalogPage', title: 'سفايف وأحزمة تربيط شاحنات (Lashing Straps)', titleEn: 'Heavy Duty Cargo Lashing Webbing', cat: 'flat', size: '35mm - 50mm - 75mm', color: 'أزرق / برتقالي', colorEn: 'Blue / Orange', media: 'https://images.unsplash.com/photo-1581092160607-ee22621dd758?w=600', desc: 'سفايف وأشرطة مسطحة قوية لتثبيت الحمولات والبضائع أثناء النقل البري والشحن الخارجي.' },
+            { id: 3, target: 'tradePage', title: 'خيوط وألياف صناعية خيش للتصدير والجملة', titleEn: 'Industrial Yarns & Synthetic Fibers Export', cat: 'threads', size: 'حسب طلب المعامل', color: 'خام وطبيعي', colorEn: 'Natural / Raw', media: 'https://images.unsplash.com/photo-1578575437130-527eed3abbec?w=600', desc: 'استيراد وتصدير ألياف وخيوط صناعية وأنسجة خام لمصانع الحبال والورش بالحاويات المباشرة.' }
+        ];
+
+        let shippingDestinations = [
+            { country: 'استلام محلي في سوريا 🇸🇾', route: 'استلام مباشر أو شحن داخلي للمحافظات (حلب، دمشق، حمص، حماة، اللاذقية، طرطوس...)', delivery: 'تغطية كاملة للمحافظات والورش', notes: 'تجهيز الشحنات واللفائف للبضائع بالكميات المطلوبة.' },
+            { country: 'شحن وتصدير إلى العراق 🇮🇶', route: 'شحن بري تجاري وحاويات (عبر المعابر الحدودية ومراكز التجميع في حلب ودمشق)', delivery: 'وصول إلى بغداد، أربيل، والبصرة', notes: 'تنسيق الحمولات الكبيرة والطلبيات عبر مكاتب الشحن الدولية المعتمدة.' },
+            { country: 'شحن إلى لبنان ودول الجوار 🇱🇧 🇯🇴 🇸🇦', route: 'شحن بري وسريع للطرود التجارية وحمولات الأنسجة والحبال والسفايف', delivery: 'تغطية المراكز التجارية والشركاء', notes: 'تسهيل كافة إجراءات الشحن البري والترانزيت.' }
+        ];
+
+        const i18n = {
+            ar: {
+                title: "Cordexis | الأنسجة والحبال الصناعية والاستيراد والتصدير",
+                announcement: "أهلاً بكم في Cordexis - توريد وتصدير الحبال والأنسجة والسفايف والخيوط للجملة!",
+                brandTitle: "Cordexis",
+                brandSub: "بإدارة أبناء الحاج محمود دوارة",
+                adminBtn: "الإدارة",
+                adminTitle: "تسجيل دخول الإدارة",
+                searchPlaceholder: "ابحث باسم المنتج، المقاس، أو النوع...",
+                sizeLabel: "المقاس / العرض: ",
+                colorLabel: "النوع / اللون: ",
+                salesContactTitle: "قسم المبيعات والتوريد المحلي (سوريا والمحافظات)",
+                exportContactTitle: "قسم الاستيراد والتصدير الدولي (الحاويات والجملة)",
+                factoryTitle: "موقع المعمل الرئيسي (حلب / سوريا)",
+                warehouseTitle: "مستودعات الشركة للتسليم والتصدير",
+                factoryDesc: "المنطقة الصناعية - خط الإنتاج والتصنيع الأساسي.",
+                warehouseDesc: "مستودعات تجمع الجملة وتجهيز الشحن البري والدولي.",
+                editBtn: "تعديل",
+                deleteBtn: "حذف"
+            },
+            en: {
+                title: "Cordexis | Industrial Textiles, Ropes & Import/Export",
+                announcement: "Welcome to Cordexis - Bulk Industrial Ropes, Straps & Fibers Supply!",
+                brandTitle: "Cordexis",
+                brandSub: "Managed by Haj Mahmoud Sons & Dawara",
+                adminBtn: "Admin",
+                adminTitle: "Admin Portal Login",
+                searchPlaceholder: "Search by product name, size, or material...",
+                sizeLabel: "Size / Width: ",
+                colorLabel: "Type / Color: ",
+                salesContactTitle: "Sales & Domestic Wholesale Dept.",
+                exportContactTitle: "International Import & Export Dept.",
+                factoryTitle: "Main Factory Location (Aleppo / Syria)",
+                warehouseTitle: "Company Delivery & Export Warehouses",
+                factoryDesc: "Industrial Zone - Primary Production & Manufacturing Line.",
+                warehouseDesc: "Wholesale Hub & International Overland Shipping Logistics.",
+                editBtn: "Edit",
+                deleteBtn: "Delete"
+            }
+        };
+
+        window.onload = function() {
+            if(localStorage.getItem('company_name')) {
+                document.getElementById('headerBrandTitle').innerText = localStorage.getItem('company_name');
+                document.getElementById('editCompanyName').value = localStorage.getItem('company_name');
+            }
+            if(localStorage.getItem('company_sub')) {
+                document.getElementById('headerBrandSub').innerText = localStorage.getItem('company_sub');
+                document.getElementById('editCompanySub').value = localStorage.getItem('company_sub');
+            }
+            
+            if(document.getElementById('editFactoryMap')) document.getElementById('editFactoryMap').value = factoryMapUrl;
+            if(document.getElementById('editWarehouseMap')) document.getElementById('editWarehouseMap').value = warehouseMapUrl;
+
+            document.getElementById('editSalesPhone').value = SALES_WHATSAPP_PHONE;
+            document.getElementById('editSalesManager').value = SALES_MANAGER_NAME;
+            document.getElementById('editSalesBtnText').value = SALES_BTN_TEXT;
+            document.getElementById('editExportPhone').value = EXPORT_WHATSAPP_PHONE;
+            document.getElementById('editExportManager').value = EXPORT_MANAGER_NAME;
+            document.getElementById('editExportBtnText').value = EXPORT_BTN_TEXT;
+
+            renderApp();
+        };
+
+        function toggleLanguage() {
+            currentLang = currentLang === 'ar' ? 'en' : 'ar';
+            document.documentElement.setAttribute('dir', currentLang === 'ar' ? 'rtl' : 'ltr');
+            document.documentElement.setAttribute('lang', currentLang);
+            document.getElementById('langBtnText').innerText = currentLang === 'ar' ? 'EN' : 'العربية';
+            
+            let txt = i18n[currentLang];
+            document.getElementById('pageTitle').innerText = txt.title;
+            document.getElementById('announcementText').innerText = txt.announcement;
+            if(!localStorage.getItem('company_name')) document.getElementById('headerBrandTitle').innerText = txt.brandTitle;
+            if(!localStorage.getItem('company_sub')) document.getElementById('headerBrandSub').innerText = txt.brandSub;
+            
+            document.getElementById('adminDrawerBtn').innerHTML = `<i class="fa-solid fa-user-gear"></i> ${txt.adminBtn}`;
+            document.getElementById('adminLoginTitle').innerText = txt.adminTitle;
+
+            renderApp();
+        }
+
+        function updateContactSettings() {
+            SALES_WHATSAPP_PHONE = document.getElementById('editSalesPhone').value.trim();
+            SALES_MANAGER_NAME = document.getElementById('editSalesManager').value.trim();
+            SALES_BTN_TEXT = document.getElementById('editSalesBtnText').value.trim();
+
+            EXPORT_WHATSAPP_PHONE = document.getElementById('editExportPhone').value.trim();
+            EXPORT_MANAGER_NAME = document.getElementById('editExportManager').value.trim();
+            EXPORT_BTN_TEXT = document.getElementById('editExportBtnText').value.trim();
+
+            localStorage.setItem('sales_phone', SALES_WHATSAPP_PHONE);
+            localStorage.setItem('sales_manager', SALES_MANAGER_NAME);
+            localStorage.setItem('sales_btn_text', SALES_BTN_TEXT);
+            localStorage.setItem('export_phone', EXPORT_WHATSAPP_PHONE);
+            localStorage.setItem('export_manager', EXPORT_MANAGER_NAME);
+            localStorage.setItem('export_btn_text', EXPORT_BTN_TEXT);
+
+            renderApp();
+            alert('تم حفظ وتحديث أرقام ومسميات الواتساب والأزرار بنجاح!');
+        }
+
+        function updateCompanyIdentity() {
+            let n = document.getElementById('editCompanyName').value.trim();
+            let s = document.getElementById('editCompanySub').value.trim();
+            if(n) { localStorage.setItem('company_name', n); document.getElementById('headerBrandTitle').innerText = n; }
+            if(s) { localStorage.setItem('company_sub', s); document.getElementById('headerBrandSub').innerText = s; }
+            alert('تم تحديث اسم الشركة بنجاح!');
+        }
+
+        function updateFactoryMaps() {
+            let fMap = document.getElementById('editFactoryMap').value.trim();
+            let wMap = document.getElementById('editWarehouseMap').value.trim();
+            if(fMap) { factoryMapUrl = fMap; localStorage.setItem('factory_map', fMap); }
+            if(wMap) { warehouseMapUrl = wMap; localStorage.setItem('warehouse_map', wMap); }
+            renderApp();
+            alert('تم تحديث خرائط المعمل والمستودعات بشكل آمن!');
+        }
+
+        function previewImageFile(inputEl, previewImgId) {
+            let file = inputEl.files[0];
+            if (file) {
+                let reader = new FileReader();
+                reader.onload = function(e) {
+                    document.getElementById(previewImgId).src = e.target.result;
+                    document.getElementById(previewImgId).style.display = 'block';
+                    if (previewImgId === 'p-media-preview') document.getElementById('p-media-base64').value = e.target.result;
+                    else document.getElementById('m-media-base64').value = e.target.result;
+                };
+                reader.readAsDataURL(file);
+            }
+        }
+
+        function toggleTheme() { document.body.classList.toggle('light-mode'); }
+        
+        function shareProduct(title) {
+            let shareText = `منتج من شركة Cordexis: ${title} - ${window.location.href}`;
+            if (navigator.share) { navigator.share({ title: 'Cordexis', text: shareText }).catch(() => {}); }
+            else {
+                navigator.clipboard.writeText(shareText).then(() => {
+                    alert('تم نسخ رابط المنتج بنجاح!');
+                }).catch(() => { prompt('Copy link:', shareText); });
+            }
+        }
+
+        function switchPage(pageId, btnEl) {
+            document.querySelectorAll('.page-view').forEach(p => p.classList.remove('active'));
+            let targetView = document.getElementById(pageId);
+            if(targetView) targetView.classList.add('active');
+            if(btnEl) { document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active')); btnEl.classList.add('active'); }
+        }
+
+        function openDrawer() { document.getElementById('drawerOverlay').style.display = 'block'; document.getElementById('drawerContent').classList.add('open'); }
+        function closeDrawer() { document.getElementById('drawerOverlay').style.display = 'none'; document.getElementById('drawerContent').classList.remove('open'); }
+
+        function renderApp() {
+            let navContainer = document.getElementById('mainNavTabs');
+            let pagesContainer = document.getElementById('pagesContainer');
+            let pTargetSelect = document.getElementById('p-target');
+            let txt = i18n[currentLang];
+            
+            navContainer.innerHTML = '';
+            pagesContainer.innerHTML = '';
+            if(pTargetSelect) pTargetSelect.innerHTML = '';
+
+            let adminMainTabsList = document.getElementById('adminMainTabsList');
+            if(adminMainTabsList) adminMainTabsList.innerHTML = '';
+
+            mainTabs.forEach((tab, idx) => {
+                let tabName = currentLang === 'ar' ? tab.name : (tab.nameEn || tab.name);
+                let btn = document.createElement('button');
+                btn.className = `nav-btn ${idx === 0 ? 'active' : ''}`;
+                btn.innerHTML = `<i class="fa-solid ${tab.icon || 'fa-folder'}"></i> ${tabName}`;
+                btn.onclick = (e) => switchPage(tab.id, e.currentTarget);
+                navContainer.appendChild(btn);
+
+                let pageDiv = document.createElement('div');
+                pageDiv.id = tab.id;
+                pageDiv.className = `page-view ${idx === 0 ? 'active' : ''}`;
+
+                if (tab.type === 'catalog') {
+                    pageDiv.innerHTML = `
+                        <div class="showroom-banner">
+                            <h2>Cordexis — الحبال والأنسجة والسفايف</h2>
+                            <p>توريد واستيراد كافة أنواع الحبال النايلون، السفايف، الخيوط والأنسجة بالجملة</p>
+                        </div>
+                        <div class="search-box"><i class="fa-solid fa-magnifying-glass"></i><input type="text" class="searchInputClass" oninput="renderProducts()" placeholder="${txt.searchPlaceholder}"></div>
+                        <div class="filter-section"><div class="category-buttons catNavClass"></div></div>
+                        <div class="catalog catalogClass"></div>
+                        
+                        <div class="trade-card" style="margin-top:20px; border-color:var(--gold-primary);">
+                            <h3 class="trade-title"><i class="fa-solid fa-user-tie"></i> ${txt.salesContactTitle}</h3>
+                            <p class="product-desc" style="font-weight:bold; color:var(--gold-bright); margin-bottom:8px;">${SALES_MANAGER_NAME}</p>
+                            <a href="https://wa.me/${SALES_WHATSAPP_PHONE}" class="btn-whatsapp-direct" target="_blank"><i class="fa-brands fa-whatsapp text-xl"></i> تواصل مع مدير المبيعات عبر الواتساب</a>
+                        </div>
+                    `;
+                } else if (tab.type === 'trade') {
+                    pageDiv.innerHTML = `
+                        <div class="trade-card">
+                            <h3 class="trade-title"><i class="fa-solid fa-plane-ship"></i> ${tabName}</h3>
+                            <p class="product-desc">نختص بتوفير واستيراد وتصدير كافة أنواع الأنسجة، الخيوط، السفايف، الحبال والمواد الأولية بالطلبيات الكبرى والحاويات المباشرة.</p>
+                        </div>
+                        <div class="tradeProductsListClass"></div>
+                        <div class="trade-card" style="border-color:#25d366;">
+                            <h3 class="trade-title"><i class="fa-solid fa-headset"></i> ${txt.exportContactTitle}</h3>
+                            <p class="product-desc" style="font-weight:bold; color:var(--gold-bright); margin-bottom:8px;">${EXPORT_MANAGER_NAME}</p>
+                            <a href="https://wa.me/${EXPORT_WHATSAPP_PHONE}" class="btn-whatsapp-direct" style="background:#25d366;" target="_blank"><i class="fa-brands fa-whatsapp text-xl"></i> تواصل مع قسم الاستيراد والتصدير عبر الواتساب</a>
+                        </div>
+                    `;
+                } else if (tab.type === 'shipping') {
+                    pageDiv.innerHTML = `
+                        <div class="trade-card" style="margin-bottom:15px;">
+                            <h3 class="trade-title"><i class="fa-solid fa-truck-fast"></i> ${tabName}</h3>
+                            <p class="product-desc">خيارات وطرق الاستلام والشحن البري المعتمدة للبضائع والأنسجة والحبال داخل سوريا وإلى دول الجوار بكل أمان.</p>
+                        </div>
+                        <div class="shippingDestinationsListClass"></div>
+                    `;
+                } else {
+                    pageDiv.innerHTML = `
+                        <div class="trade-card" style="margin-bottom:15px;">
+                            <h3 class="trade-title"><i class="fa-solid fa-industry"></i> ${tabName}</h3>
+                            <p class="product-desc">تستطيع زيارة معارضنا ومستودعاتنا الرئيسية للاطلاع على خطوط الإنتاج والإنتاج الفعلي واستلام الحمولات.</p>
+                        </div>
+                        <div class="trade-card">
+                            <h3 class="trade-title"><i class="fa-solid fa-location-dot" style="color:var(--danger-red);"></i> ${txt.factoryTitle}</h3>
+                            <p class="product-desc">${txt.factoryDesc}</p>
+                            <iframe class="map-box" src="${factoryMapUrl}" loading="lazy"></iframe>
+                        </div>
+                        <div class="trade-card" style="margin-top:15px;">
+                            <h3 class="trade-title"><i class="fa-solid fa-warehouse" style="color:var(--gold-bright);"></i> ${txt.warehouseTitle}</h3>
+                            <p class="product-desc">${txt.warehouseDesc}</p>
+                            <iframe class="map-box" src="${warehouseMapUrl}" loading="lazy"></iframe>
+                        </div>
+                        <div class="customSectionProdsClass" style="margin-top:15px;"></div>
+                    `;
+                }
+                pagesContainer.appendChild(pageDiv);
+
+                if(pTargetSelect) {
+                    let opt = document.createElement('option');
+                    opt.value = tab.id;
+                    opt.innerText = tabName;
+                    pTargetSelect.appendChild(opt);
+                }
+
+                if(adminMainTabsList) {
+                    let row = document.createElement('div');
+                    row.className = 'cat-item-row';
+                    row.innerHTML = `<span style="font-size:0.85rem; font-weight:bold;">${tabName}</span><div><button style="background:var(--gold-primary); border:none; padding:3px 8px; border-radius:4px; font-weight:bold; cursor:pointer;" onclick="editMainTab('${tab.id}')">تعديل</button> ${mainTabs.length > 1 ? `<button style="background:var(--danger-red); color:#fff; border:none; padding:3px 8px; border-radius:4px; font-weight:bold; cursor:pointer;" onclick="deleteMainTab('${tab.id}')">حذف</button>` : ''}</div>`;
+                    adminMainTabsList.appendChild(row);
+                }
+            });
+
+            if(pTargetSelect && pTargetSelect.value) {
+                updateProductCatDropdown(pTargetSelect.value);
+            }
+
+            renderCategories();
+            renderProducts();
+        }
+
+        function updateProductCatDropdown(targetTabId) {
+            let pCat = document.getElementById('p-cat');
+            if(!pCat) return;
+            pCat.innerHTML = '';
+            
+            let targetTab = mainTabs.find(t => t.id === targetTabId);
+            if (targetTab && targetTab.type === 'catalog') {
+                document.getElementById('catSelectBoxWrapper').style.display = 'block';
+                categories.forEach(c => {
+                    if(c.id !== 'all') {
+                        let opt = document.createElement('option');
+                        opt.value = c.id;
+                        opt.innerText = c.name;
+                        pCat.appendChild(opt);
+                    }
+                });
+            } else {
+                document.getElementById('catSelectBoxWrapper').style.display = 'none';
+            }
+        }
+
+        function renderCategories() {
+            let catNavs = document.querySelectorAll('.catNavClass'), adminCatList = document.getElementById('adminCatManageList');
+            if(adminCatList) adminCatList.innerHTML = '';
+
+            catNavs.forEach(catNav => {
+                catNav.innerHTML = '';
+                categories.forEach(c => {
+                    let btn = document.createElement('button');
+                    btn.className = `btn-cat ${selectedCat === c.id ? 'active' : ''}`;
+                    btn.innerText = c.name;
+                    btn.onclick = () => { selectedCat = c.id; renderCategories(); renderProducts(); };
+                    catNav.appendChild(btn);
+                });
+            });
+
+            categories.forEach(c => {
+                if(c.id !== 'all' && adminCatList) {
+                    let row = document.createElement('div'); row.className = 'cat-item-row';
+                    row.innerHTML = `<span style="font-size:0.85rem; font-weight:bold;">${c.name}</span><div><button style="background:var(--danger-red); color:#fff; border:none; padding:3px 8px; border-radius:4px; font-weight:bold; cursor:pointer;" onclick="deleteCategory('${c.id}')">حذف</button></div>`;
+                    adminCatList.appendChild(row);
+                }
+            });
+        }
+
+        function renderProducts() {
+            let searchInputEl = document.querySelector('.searchInputClass');
+            let searchVal = searchInputEl ? searchInputEl.value.trim().toLowerCase() : '';
+            let txt = i18n[currentLang];
+
+            mainTabs.forEach(tab => {
+                if(tab.type === 'catalog') {
+                    let catalogEl = document.querySelector(`#${tab.id} .catalogClass`);
+                    if(!catalogEl) return;
+                    catalogEl.innerHTML = '';
+
+                    let tabProds = products.filter(p => p.target === tab.id);
+                    let filteredCatalog = selectedCat === 'all' ? tabProds : tabProds.filter(p => p.cat === selectedCat);
+                    if (searchVal) filteredCatalog = filteredCatalog.filter(p => p.title.toLowerCase().includes(searchVal));
+
+                    filteredCatalog.forEach(p => {
+                        let waMsg = encodeURIComponent(`السلام عليكم، استفسار عن المنتج من شركة Cordexis:\n- المنتج: *${p.title}*\n- المقاس: ${p.size}\n- النوع/اللون: ${p.color}`);
+
+                        let card = document.createElement('div'); card.className = 'card';
+                        card.innerHTML = `
+                            <img src="${p.media}" class="card-img">
+                            <h3 class="title">${p.title}</h3>
+                            <div class="specs"><span class="spec-item">${txt.sizeLabel}${p.size}</span><span class="spec-item">${txt.colorLabel}${p.color}</span></div>
+                            <div class="product-desc">${p.desc}</div>
+                            <div class="action-buttons">
+                                <a href="https://wa.me/${SALES_WHATSAPP_PHONE}?text=${waMsg}" class="btn-whatsapp-direct" target="_blank"><i class="fa-brands fa-whatsapp text-lg"></i> ${SALES_BTN_TEXT}</a>
+                                <button class="btn-share" onclick="shareProduct('${p.title}')"><i class="fa-solid fa-share-nodes"></i></button>
+                            </div>
+                            <div class="admin-card-actions">
+                                <button class="btn-gold" style="flex:1; padding:6px; font-weight:bold;" onclick="openEditModal(${p.id})">تعديل</button>
+                                <button class="btn-danger" style="border:none; padding:6px 12px; border-radius:6px; font-weight:bold; cursor:pointer;" onclick="deleteProduct(${p.id})">حذف</button>
+                            </div>
+                        `;
+                        catalogEl.appendChild(card);
+                    });
+
+                } else if(tab.type === 'trade' || tab.type === 'custom') {
+                    let tradeEl = document.querySelector(`#${tab.id} .tradeProductsListClass`) || document.querySelector(`#${tab.id} .customSectionProdsClass`);
+                    if(!tradeEl) return;
+                    tradeEl.innerHTML = '';
+                    let tabProds = products.filter(p => p.target === tab.id);
+                    if (searchVal) tabProds = tabProds.filter(p => p.title.toLowerCase().includes(searchVal));
+                    
+                    tabProds.forEach(p => {
+                        let waMsgExport = encodeURIComponent(`السلام عليكم، استفسار من شركة Cordexis:\n- الطلب: *${p.title}*`);
+
+                        let card = document.createElement('div'); card.className = 'trade-card';
+                        card.innerHTML = `
+                            <img src="${p.media}" class="card-img">
+                            <h3 class="trade-title">${p.title}</h3>
+                            <div class="specs"><span class="spec-item">${txt.sizeLabel}${p.size}</span><span class="spec-item">${txt.colorLabel}${p.color}</span></div>
+                            <div class="product-desc">${p.desc}</div>
+                            <div class="action-buttons">
+                                <a href="https://wa.me/${EXPORT_WHATSAPP_PHONE}?text=${waMsgExport}" class="btn-whatsapp-direct" style="background:#25d366;" target="_blank"><i class="fa-brands fa-whatsapp text-lg"></i> ${EXPORT_BTN_TEXT}</a>
+                                <button class="btn-share" onclick="shareProduct('${p.title}')"><i class="fa-solid fa-share-nodes"></i></button>
+                            </div>
+                            <div class="admin-card-actions">
+                                <button class="btn-gold" style="flex:1; padding:6px; font-weight:bold;" onclick="openEditModal(${p.id})">تعديل</button>
+                                <button class="btn-danger" style="border:none; padding:6px 12px; border-radius:6px; font-weight:bold; cursor:pointer;" onclick="deleteProduct(${p.id})">حذف</button>
+                            </div>
+                        `;
+                        tradeEl.appendChild(card);
+                    });
+
+                } else if(tab.type === 'shipping') {
+                    let shippingEl = document.querySelector(`#${tab.id} .shippingDestinationsListClass`);
+                    if(!shippingEl) return;
+                    shippingEl.innerHTML = '';
+
+                    shippingDestinations.forEach(dest => {
+                        let sCard = document.createElement('div'); sCard.className = 'shipping-country-card';
+                        sCard.innerHTML = `
+                            <div class="shipping-country-title">${dest.country}</div>
+                            <div class="product-desc" style="margin-bottom:8px;"><b>طريقة التسليم والشحن:</b> ${dest.route}</div>
+                            <div class="product-desc" style="margin-bottom:8px;"><b>نطاق الوصول:</b> ${dest.delivery}</div>
+                            <div style="background:var(--bg-dark); padding:8px; border-radius:6px; font-size:0.8rem; color:var(--gold-bright);">💡 ${dest.notes}</div>
+                        `;
+                        shippingEl.appendChild(sCard);
+                    });
+                }
+            });
+        }
+
+        function openEditModal(id) {
+            let p = products.find(prod => prod.id === id); if (!p) return;
+            document.getElementById('m-prod-id').value = p.id; document.getElementById('m-title').value = p.title;
+            document.getElementById('m-size').value = p.size; document.getElementById('m-color').value = p.color;
+            document.getElementById('m-desc').value = p.desc; document.getElementById('m-media-preview').src = p.media;
+            document.getElementById('m-media-base64').value = p.media;
+            document.getElementById('editModal').style.display = 'flex';
+        }
+        function closeEditModal() { document.getElementById('editModal').style.display = 'none'; }
+        
+        function saveProductEdits() {
+            let id = parseInt(document.getElementById('m-prod-id').value);
+            let p = products.find(prod => prod.id === id);
+            if (p) {
+                p.title = document.getElementById('m-title').value.trim() || p.title;
+                p.size = document.getElementById('m-size').value.trim() || p.size;
+                p.color = document.getElementById('m-color').value.trim() || p.color;
+                p.desc = document.getElementById('m-desc').value.trim() || p.desc;
+                if(document.getElementById('m-media-base64').value) {
+                    p.media = document.getElementById('m-media-base64').value;
+                }
+                localStorage.setItem('saved_products', JSON.stringify(products));
+                renderProducts(); 
+                closeEditModal(); 
+                alert('تم حفظ تعديلات الصنف بنجاح!');
+            }
+        }
+        
+        function deleteProduct(id) { 
+            if (confirm("هل تريدจริงๆ حذف هذا الصنف من الموقع؟")) { 
+                products = products.filter(p => p.id !== id); 
+                localStorage.setItem('saved_products', JSON.stringify(products));
+                renderProducts(); 
+            } 
+        }
+
+        function addCategory() {
+            let name = document.getElementById('new-cat-name').value.trim();
+            if(name) { 
+                categories.push({ id: 'cat_' + Date.now(), name: name, nameEn: name }); 
+                localStorage.setItem('saved_categories', JSON.stringify(categories));
+                document.getElementById('new-cat-name').value = ''; 
+                renderCategories(); 
+                updateProductCatDropdown(document.getElementById('p-target').value);
+                alert('تمت إضافة التصنيف الفرعي بنجاح!'); 
+            }
+        }
+
+        function deleteCategory(id) {
+            if(confirm("حذف هذا التصنيف الفرعي؟")) {
+                categories = categories.filter(c => c.id !== id);
+                localStorage.setItem('saved_categories', JSON.stringify(categories));
+                renderCategories();
+                updateProductCatDropdown(document.getElementById('p-target').value);
+            }
+        }
+
+        function addMainTab() {
+            let name = document.getElementById('new-main-tab-name').value.trim();
+            let type = document.getElementById('new-main-tab-type').value;
+            if(name) {
+                let newId = 'page_' + Date.now();
+                mainTabs.push({ id: newId, name: name, nameEn: name, type: type, icon: 'fa-folder-open' });
+                localStorage.setItem('saved_mainTabs', JSON.stringify(mainTabs));
+                document.getElementById('new-main-tab-name').value = '';
+                renderApp(); 
+                alert('تمت إضافة القسم الرئيسي بنجاح!');
+            }
+        }
+
+        function deleteMainTab(id) {
+            if(confirm("حذف هذا القسم الرئيسي؟")) {
+                mainTabs = mainTabs.filter(t => t.id !== id);
+                localStorage.setItem('saved_mainTabs', JSON.stringify(mainTabs));
+                renderApp();
+            }
+        }
+
+        function addNewProduct() {
+            let target = document.getElementById('p-target').value;
+            let title = document.getElementById('p-title').value.trim();
+            if(!title) { alert('يرجى إدخال اسم الصنف على الأقل!'); return; }
+
+            let targetTab = mainTabs.find(t => t.id === target);
+            let catVal = 'all';
+            if (targetTab && targetTab.type === 'catalog') {
+                catVal = document.getElementById('p-cat').value || 'all';
+            }
+
+            let newProd = {
+                id: Date.now(), 
+                target: target, 
+                title: title, 
+                titleEn: title, 
+                cat: catVal,
+                size: document.getElementById('p-size').value.trim() || 'غير محدد', 
+                color: document.getElementById('p-color').value.trim() || 'حسب الطلب', 
+                media: document.getElementById('p-media-base64').value || 'https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=600',
+                desc: document.getElementById('p-desc').value.trim() || 'لا توجد تفاصيل إضافية.'
+            };
+
+            products.push(newProd);
+            localStorage.setItem('saved_products', JSON.stringify(products));
+            
+            // تصفير الحقول بعد الإضافة
+            document.getElementById('p-title').value = '';
+            document.getElementById('p-size').value = '';
+            document.getElementById('p-color').value = '';
+            document.getElementById('p-desc').value = '';
+            document.getElementById('p-media-base64').value = '';
+            document.getElementById('p-media-preview').style.display = 'none';
+
+            renderProducts(); 
+            alert('تم نشر الصنف وإضافته بنجاح تام للموقع!');
+            switchPage(target, null);
+        }
+
+        function processStep1() {
+            if (document.getElementById('admin-email').value.trim().toLowerCase() === AUTHORIZED_EMAIL.toLowerCase()) {
+                generatedCode = Math.floor(1000 + Math.random() * 9000).toString(); alert(`[كود التحقق الخاص بك]: ${generatedCode}`);
+                document.getElementById('step1').style.display = 'none'; document.getElementById('step2').style.display = 'block';
+            } else alert('الإيميل غير مخصص للإدارة!');
+        }
+        function processStep2() {
+            if (document.getElementById('admin-code').value.trim() === generatedCode) { document.getElementById('step2').style.display = 'none'; document.getElementById('step3').style.display = 'block'; }
+            else alert('كود التحقق خاطئ!');
+        }
+        function processStep3() {
+            if (document.getElementById('admin-pass').value.trim() === ADMIN_PASSWORD) {
+                alert('مرحباً بك يا معلم أحمد! تم تفعيل وضع لوحة التحكم.'); 
+                document.body.classList.add('admin-mode');
+                document.getElementById('authSection').style.display = 'none'; 
+                document.getElementById('adminQuickNav').style.display = 'block';
+                renderProducts(); 
+                closeDrawer();
+                switchPage('adminPage', null);
+            } else alert('كلمة السر خاطئة!');
+        }
+        function logoutAdmin() {
+            document.body.classList.remove('admin-mode'); 
+            document.getElementById('authSection').style.display = 'block';
+            document.getElementById('adminQuickNav').style.display = 'none'; 
+            document.getElementById('step1').style.display = 'block';
+            document.getElementById('step2').style.display = 'none'; 
+            document.getElementById('step3').style.display = 'none';
+            switchPage(mainTabs[0].id, null); 
+            renderProducts(); 
+            alert('تم تسجيل الخروج بنجاح.');
+        }
+    </script>
+</body>
+</html>
